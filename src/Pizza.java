@@ -4,6 +4,7 @@ public class Pizza {
     private double price;
 
 
+
     public Pizza(String name, String ingredients, double price) {
         this.name = name;
         this.price = price;
@@ -15,5 +16,9 @@ public class Pizza {
     public String toString() {
         return name + " - " + ingredients + " - " + price + " Kr";
 
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
