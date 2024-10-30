@@ -6,15 +6,20 @@ public class Bestilling {
     private Pizza pizza;
     private LocalDateTime bestillingsTidspunkt;
     private LocalDateTime afhentningsTidspunkt;
+    private static int næsteOrdreNummer = 1; // Static counter to keep track of order numbers
+    private int ordreNummer; // Unique order number for each order
 
-    // Liste til at holde alle bestillinger
     private static ArrayList<Bestilling> bestillinger = new ArrayList<>();
 
-    // Konstruktor til en enkelt bestilling
-    public Bestilling(Pizza pizza, LocalDateTime bestillingsTidspunkt, LocalDateTime afhentningsTidspunkt) {
-        this.pizza = pizza;
+
+    public Bestilling(ArrayList<Pizza> pizzaer, LocalDateTime bestillingsTidspunkt, LocalDateTime afhentningsTidspunkt) {
+        if (pizzaer == null || pizzaer.isEmpty()) {
+            throw new IllegalArgumentException("Bestilling skal indeholde mindst én pizza.");
+        }
+        this.pizzaer = pizzaer;
         this.bestillingsTidspunkt = bestillingsTidspunkt;
         this.afhentningsTidspunkt = afhentningsTidspunkt;
+        this.ordreNummer = næsteOrdreNummer++;
     }
 
     // Tilføjer en bestilling til listen
@@ -22,18 +27,58 @@ public class Bestilling {
         bestillinger.add(bestilling);
     }
 
-    // Udskriver alle bestillinger
+    public static void fjernBestilling(int ordreNummer) {
+        bestillinger.removeIf(bestilling -> bestilling.getOrdreNummer() == ordreNummer);
+    }
+
+    public int getOrdreNummer() {
+        return ordreNummer;
+    }
+
+    // Sorteringsmetode
+    public static void sorterBestillingerEfterAfhentning() {
+        bestillinger.sort(Comparator.comparing(Bestilling::getAfhentningsTidspunkt));
+    }
+
+    public LocalDateTime getAfhentningsTidspunkt() {
+        return afhentningsTidspunkt;
+    }
+
+    // Udskriv bestillinger i sorteret rækkefølge
     public static void udskrivBestillinger() {
-        System.out.println("Liste over bestillinger:");
+        sorterBestillingerEfterAfhentning();
+        System.out.println("Liste over bestillinger (sorteret efter afhentningstidspunkt):");
         for (Bestilling bestilling : bestillinger) {
             System.out.println(bestilling);
         }
     }
-    public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        return pizza.toString() + " | Bestilt: " + bestillingsTidspunkt.format(formatter) + " | Afhentning: " + afhentningsTidspunkt.format(formatter);
-    }
+
+
+
+    public double beregnSamletBeløb() {
+        double samletBeløb = 0;
+        for (Pizza pizza : pizzaer) {
+            samletBeløb += pizza.getPrice();
+        }
+        return samletBeløb;
     }
 
+        public String toString () {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+            StringBuilder sb = new StringBuilder("Ordre #" + ordreNummer + " | Bestilt: "
+                    + bestillingsTidspunkt.format(formatter) + " | Afhentning: "
+                    + afhentningsTidspunkt.format(formatter) + "\nPizzaer:\n");
+
+            if (pizzaer.isEmpty()) {
+                sb.append("Ingen pizzaer i denne bestilling.\n");
+            } else {
+                for (Pizza pizza : pizzaer) {
+                    sb.append(" - ").append(pizza.toString()).append("\n");
+                }
+            }
+
+            sb.append("Samlet beløb: ").append(beregnSamletBeløb()).append(" Kr");
+            return sb.toString();
+        }
 
 
