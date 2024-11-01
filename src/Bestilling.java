@@ -51,6 +51,7 @@ public class Bestilling {
         System.out.println("Liste over bestillinger (sorteret efter afhentningstidspunkt):");
         for (Bestilling bestilling : bestillinger) {
             System.out.println(bestilling);
+            System.out.println(); // lav mellem rum
         }
     }
 

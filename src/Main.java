@@ -22,12 +22,15 @@ public class Main {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
+            System.out.println();
+
             switch (choice) {
                 case 1:
                     System.out.println("----Menukort----");
                     for (Pizza pizza : menu.getPizzaer()) {
                         System.out.println(pizza);
                     }
+                    System.out.println();
                     break;
 
                 case 2:
@@ -48,6 +51,7 @@ public class Main {
                         } else {
                             System.out.println("Ugyldigt pizza nummer, prøv igen.");
                         }
+                        System.out.println();
                     }
 
                     if (!valgtePizzaer.isEmpty()) {
@@ -74,11 +78,12 @@ public class Main {
                     } else {
                         System.out.println("Ingen pizzaer valgt til bestillingen.");
                     }
+                    System.out.println();
                     break;
 
                 case 3:
-                    System.out.println();
                     Bestilling.udskrivBestillinger(); // Kalder metoden som sorterer og udskriver bestillingerne
+                    System.out.println();
                     break;
 
                 case 4:
@@ -87,6 +92,7 @@ public class Main {
                     scanner.nextLine(); // Clear newline
                     Bestilling.fjernBestilling(ordreNummer);
                     System.out.println("Bestilling fjernet hvis den eksisterede.");
+                    System.out.println();
                     break;
 
                 case 5:
@@ -96,6 +102,7 @@ public class Main {
 
                 default:
                     System.out.println("Ugyldig indtastning, prøv igen.");
+                    System.out.println();
             }
         }
         scanner.close();
