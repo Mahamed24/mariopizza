@@ -1,8 +1,11 @@
 Gruppe 4
 
-Abdallah Saaed Ibrahim,
+Abdallah Saaed Ibrahim
 
-Ahmar Shahab Ahmad,
-Mahamed Farah,
-Martin Hansen,
+Ahmar Shahab Ahmad
+
+Mahamed Farah
+
+Martin Hansen
+
 Mikkel Rosenqvist Hansen
