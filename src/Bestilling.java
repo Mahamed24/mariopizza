@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.time.format.DateTimeFormatter;
 
 public class Bestilling {
-    private Pizza pizza;
+    private ArrayList<Pizza> pizzaer;
     private LocalDateTime bestillingsTidspunkt;
     private LocalDateTime afhentningsTidspunkt;
     private static int næsteOrdreNummer = 1; // Static counter to keep track of order numbers
@@ -22,7 +23,7 @@ public class Bestilling {
         this.ordreNummer = næsteOrdreNummer++;
     }
 
-    // Tilføjer en bestilling til listen
+
     public static void tilføjBestilling(Bestilling bestilling) {
         bestillinger.add(bestilling);
     }
@@ -81,4 +82,6 @@ public class Bestilling {
             return sb.toString();
         }
 
+
+    }
 

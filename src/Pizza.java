@@ -12,7 +12,6 @@ public class Pizza {
 
     }
 
-
     public String toString() {
         return name + " - " + ingredients + " - " + price + " Kr";
 
