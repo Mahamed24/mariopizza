@@ -1,4 +1,4 @@
-Gruppe 4
+----Gruppe 4----
 
 Abdallah Saaed Ibrahim Wais 
 
@@ -10,7 +10,7 @@ Martin Hansen
 
 Mikkel Rosenqvist Hansen
 
-Github Navne: 
+----Github Navne----
 
 Rnswais
 
